@@ -17,7 +17,7 @@ export class LeagueComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.httpService.getData().then(data => {console.log(data); this.competitions=data;});
+      this.httpService.getData().subscribe((data: Competitions[]) => {console.log(data); this.competitions=data;});
 
  
   }
