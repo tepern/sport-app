@@ -4,6 +4,7 @@ import { Competitions } from './competitions';
 import {from} from 'rxjs';
 import {Observable} from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 
@@ -42,7 +43,9 @@ export class HttpService {
        return null;
     });
 
-    return from($data);
+    return from($data).pipe(map((data:any)=>{
+            return data["competitions"];})
 
-  }
+           );
+   }
 }
