@@ -1,0 +1,13 @@
+<p>Teams</p>
+<ul class="team-list">
+    <li *ngFor="let team of teams">
+        <a>
+            <div class="team__item" *ngIf="team">
+                <div class="team__content">
+                    <h3 class="team__title">{{team.name}}</h3>
+                    <p class="team_text">{{team.address}}</p>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
