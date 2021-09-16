@@ -6,12 +6,14 @@ import { LeagueComponent } from './league/league.component';
 import { HttpService } from './http.service';
 import { AppRoutingModule } from './app-routing.module';
 import { TeamComponent } from './team/team.component';
+import { CompetitionMatchesComponent } from './competition-matches/competition-matches.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LeagueComponent,
-    TeamComponent
+    TeamComponent,
+    CompetitionMatchesComponent
   ],
   imports: [
     BrowserModule,
