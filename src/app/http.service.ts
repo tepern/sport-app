@@ -56,8 +56,8 @@ export class HttpService {
    }
 
 
-   getTeam():Observable<Team[]> {
-
+     getTeam():Observable<Team[]> {
+        
 	    const $data = fetch(this.teamUrl,
 	       {
 	          headers: {
@@ -143,8 +143,28 @@ export class HttpService {
    }
 
 
-   getTeamMatches(id: number): Observable<Match[]> {
-       const $data = fetch(this.teamUrl+id+'/matches/',
+    getTeamMatches(id: number, startDate: string, endDate: string): Observable<Match[]> {
+        let startFilter = '';
+        let endFilter = '';
+        let filterDate = '';
+
+        if(startDate.length == 10) {
+            startFilter = 'dateFrom=' + startDate;
+        }
+
+        if(endDate.length == 10) {
+            endFilter = 'dateTo=' + endDate;
+        }
+
+        if(endFilter.length > 10 && startFilter.length > 10) {
+            filterDate = '?' + startFilter + '&' + endFilter;
+        } else if(endFilter.length > 10) {
+            filterDate = '?' + endFilter;
+        } else if(startFilter.length > 10) {
+            filterDate = '?' + startFilter; 
+        }
+
+        const $data = fetch(this.teamUrl+id+'/matches/'+filterDate,
 	       {
 	          headers: {
 	            'X-Auth-Token': '130163d1133e44af8cd858e1002d520a',

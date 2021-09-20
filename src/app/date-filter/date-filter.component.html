@@ -1,0 +1,21 @@
+<form [formGroup]="form" novalidate (ngSubmit)="submit()">
+    <div class="form-group">
+        <label>Start date</label>
+        <input class="form-control" type="date" name="startDate" formControlName="startDate" />
+        <!--<div class="alert alert-danger"
+            *ngIf="form.get('startDate').invalid && form.get('startDate').touched">
+            <small>Введите дату</small>
+        </div>-->    
+    </div>
+    <div class="form-group">
+        <label>End date</label>
+	    <input type="date" class="form-control" name="endDate" formControlName="endDate" /> 
+	    <!--<div class="alert alert-danger"
+            *ngIf="form.get('endDate').invalid && form.get('endDate').touched">
+            <small>Введите дату</small>
+        </div> --> 
+    </div>
+    <div class="form-group">
+        <button class="btn" [disabled]="form.invalid">Search</button>
+    </div>
+</form>

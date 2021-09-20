@@ -1,0 +1,12 @@
+label {
+	display: inline-block;
+	width: 70px;
+}
+
+.form-group {
+	margin-bottom: 15px;
+}
+
+button {
+	margin-left: 50px;
+}

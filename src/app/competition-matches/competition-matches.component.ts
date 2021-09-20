@@ -68,7 +68,11 @@ export class CompetitionMatchesComponent implements OnInit {
         } else if(startFilter.length > 10) {
             filterDate = '&' + startFilter; 
         }  
-        window.location.search += filterDate;
+        window.location.search = '?'+'id='+this.id+filterDate;
+    }
+
+    formReset(): void {
+        (<HTMLFormElement>document.getElementById("filter")).reset();
     }
 
 }

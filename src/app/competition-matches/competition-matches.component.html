@@ -1,16 +1,18 @@
 <p>Filter</p>
 <div class="form">
-	<div class="form-group">
-	    <label>Start date</label>
-	    <input type="date" class="form-control" name="startDate" [(ngModel)]="startDate" />
-	</div>
-	<div class="form-group">
-	    <label>End date</label>
-	    <input type="date" class="form-control" name="endDate" [(ngModel)]="endDate" />
-	</div>
-	<div class="form-group">
-        <button class="btn btn-default" (click)="applyFilter()">Find</button>
-    </div>
+	<form id="filter">
+		<div class="form-group">
+		    <label>Start date</label>
+		    <input type="date" class="form-control" name="startDate" [(ngModel)]="startDate" />
+		</div>
+		<div class="form-group">
+		    <label>End date</label>
+		    <input type="date" class="form-control" name="endDate" [(ngModel)]="endDate" />
+		</div>
+		<div class="form-group">
+	        <button class="btn btn-default mr-5" (click)="applyFilter()">Find</button> <button class="btn btn-default" (click)="formReset()">Reset</button>
+	    </div>
+	</form>    
 </div>
 <p>Matches</p>	
 <ul class="match-list" *ngIf="matches.length>0; else access">
