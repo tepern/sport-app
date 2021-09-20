@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Match } from '../match';
 import { Teams } from '../match';
+import { Season } from '../competitions';
 import { Competition } from '../match';
 import { HttpService } from '../http.service';
 import { Subscription } from 'rxjs';
+import { ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-competition-matches',
@@ -12,16 +14,61 @@ import { Subscription } from 'rxjs';
 })
 export class CompetitionMatchesComponent implements OnInit {
 
-  matches: Match[] = [];
+    matches: Match[] = [];
+    id: any;
+    private querySubscription: Subscription;
+    startDate: string = '';
+    endDate: string = '';
 
-  constructor(private httpService: HttpService) {
 
-  }
+    constructor(private httpService: HttpService, private route: ActivatedRoute) {
+	    this.querySubscription = route.queryParams.subscribe(
+	        (queryParam: any) => {
+	            this.id = queryParam['id'];	
+	            if(queryParam['dateFrom']) { 
+	               this.startDate = queryParam['dateFrom']; 
+	            }
 
-  ngOnInit(): void {
-      this.httpService.getCompetitionMatches(2006).subscribe((data: Match[]) => {console.log(data); this.matches=data;});
+	            if(queryParam['dateTo']) { 
+	               this.endDate = queryParam['dateTo']; 
+	            }         
+	        }
+	    );
+    }
 
- 
-  }
+    ngOnInit(): void {
+        this.httpService.getCompetitionMatches(this.id, this.startDate, this.endDate).subscribe((data: Match[]) => {
+            console.log(data); 
+            console.log(this.startDate);
+            this.matches=data;
+        });
+    }
+
+    applyFilter(): void {
+        this.httpService.getCompetitionMatches(this.id, this.startDate, this.endDate).subscribe((data: Match[]) => {
+            console.log(data); 
+            this.matches=data;
+        });
+        let startFilter = '';
+        let endFilter = '';
+        let filterDate = '';
+        const loc = window.location.search;
+        if(this.startDate.length == 10) {
+            startFilter = 'dateFrom=' + this.startDate;
+        }
+
+        if(this.endDate.length == 10) {
+            endFilter = 'dateTo=' + this.endDate;
+        }
+
+        if(endFilter.length > 10 && startFilter.length > 10) {
+            filterDate = '&' + startFilter + '&' + endFilter;
+        } else if(endFilter.length > 10) {
+            filterDate = '&' + endFilter;
+        } else if(startFilter.length > 10) {
+            filterDate = '&' + startFilter; 
+        }  
+        window.location.search += filterDate;
+    }
 
 }

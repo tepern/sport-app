@@ -1,0 +1,19 @@
+<p>Matches</p>
+<ul class="match-list" *ngIf="matches.length>0; else access">
+    <li *ngFor="let match of matches">
+        <a>
+            <div class="match__item" *ngIf="match">
+                <div class="match__content">
+                    <h3 class="match__title">id: {{ match.id }}</h3>
+                    <p class="match_text"><b>Home Team:</b> {{ match.homeTeam.name }}</p>
+                    <p class="match_text"><b>Away Team:</b> {{ match.awayTeam.name }}</p>
+                </div>
+            </div>
+        </a>
+    </li>
+</ul>
+<ng-template #access>
+	<div>
+		No access
+	</div>
+</ng-template>

@@ -1,7 +1,7 @@
 <p>leagues/competions</p>
 <ul class="cat-list">
     <li *ngFor="let competition of competitions">
-        <a>
+        <a routerLink="/matches" [queryParams]="{'id': competition.id}">
             <div class="competition__item" *ngIf="competition">
                 <div class="competition__content">
                     <h3 class="competition__title">{{competition.name}}</h3>

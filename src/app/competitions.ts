@@ -7,10 +7,10 @@ export class Area {
 
 export class Season {
     constructor (
-		id: bigint,
-		startDate: Date,
-		endDate: Date,
-		currentMatchDay: bigint
+		public id: bigint,
+		public startDate: Date,
+		public endDate: Date,
+		public currentMatchDay: bigint
 	) {}	
 }
 

@@ -1,7 +1,7 @@
 <p>Teams</p>
 <ul class="team-list">
     <li *ngFor="let team of teams">
-        <a>
+        <a routerLink="/team" [queryParams]="{'id': team.id}">
             <div class="team__item" *ngIf="team">
                 <div class="team__content">
                     <h3 class="team__title">{{team.name}}</h3>

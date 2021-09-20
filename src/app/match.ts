@@ -1,7 +1,9 @@
+import { Season } from './competitions';
+
 export class Competition {
 	constructor (
-        id: bigint,
-        name: string 
+        public id: bigint,
+        public name: string 
 	) {}
 }
 
@@ -15,10 +17,11 @@ export class Teams {
 export class Match {
     constructor (
         public id: bigint,
-        //venue: string,
+        //public venue: string,
         public homeTeam: Teams,
         public awayTeam: Teams,
-        //competition: Competition
+        public competition: Competition,
+        public season: Season,
 	) {}
 
 }
