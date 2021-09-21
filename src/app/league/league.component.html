@@ -1,11 +1,11 @@
 <p>leagues/competions</p>
-<ul class="cat-list">
+<ul class="competition-list">
     <li *ngFor="let competition of competitions">
-        <a routerLink="/matches" [queryParams]="{'id': competition.id}">
+        <a class="competition__link" routerLink="/matches" [queryParams]="{'id': competition.id}">
             <div class="competition__item" *ngIf="competition">
                 <div class="competition__content">
                     <h3 class="competition__title">{{competition.name}}</h3>
-                    <p class="competition_text">{{competition.plan}}</p>
+                    <p class="competition__text">Plan: {{competition.plan}}</p>
                 </div>
             </div>
         </a>

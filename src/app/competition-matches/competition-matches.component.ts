@@ -4,6 +4,7 @@ import { Teams } from '../match';
 import { Season } from '../competitions';
 import { Competition } from '../match';
 import { HttpService } from '../http.service';
+import { DateFilterComponent } from '../date-filter/date-filter.component';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute} from '@angular/router';
 
@@ -44,21 +45,22 @@ export class CompetitionMatchesComponent implements OnInit {
         });
     }
 
-    applyFilter(): void {
+    applyFilter(formData: any): void {
         this.httpService.getCompetitionMatches(this.id, this.startDate, this.endDate).subscribe((data: Match[]) => {
             console.log(data); 
             this.matches=data;
         });
+        console.log(formData);
         let startFilter = '';
         let endFilter = '';
         let filterDate = '';
         const loc = window.location.search;
-        if(this.startDate.length == 10) {
-            startFilter = 'dateFrom=' + this.startDate;
+        if(formData.startDate.length == 10) {
+            startFilter = 'dateFrom=' + formData.startDate;
         }
 
-        if(this.endDate.length == 10) {
-            endFilter = 'dateTo=' + this.endDate;
+        if(formData.endDate.length == 10) {
+            endFilter = 'dateTo=' + formData.endDate;
         }
 
         if(endFilter.length > 10 && startFilter.length > 10) {

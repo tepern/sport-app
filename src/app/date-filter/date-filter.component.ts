@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
@@ -7,7 +7,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
   styleUrls: ['./date-filter.component.css']
 })
 export class DateFilterComponent implements OnInit {
-
+    @Output() onFilter: EventEmitter<any> = new EventEmitter<any>();
     form: FormGroup;
 
     constructor() { 
@@ -19,16 +19,19 @@ export class DateFilterComponent implements OnInit {
     }
 
     ngOnInit() {
-        /*this.form = new FormGroup({
-            startDate: new FormControl('',Validators.required),
-            endDate: new FormControl('',Validators.required),
-        })*/
+       
     }
     
     submit() {
         const formData = {...this.form.value};
-        //this.onAdd.emit(formData);
+        this.onFilter.emit(formData);
         this.form.reset();
+    }
+
+    formReset(): void {
+        if(<HTMLFormElement>document.getElementById("filter")) {
+            (<HTMLFormElement>document.getElementById("filter")).reset();
+        } 
     }
 
 }

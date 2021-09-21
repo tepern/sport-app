@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 export class TeamComponent implements OnInit {
 
   teams: Team[] = [];
+  search: string = '';
 
   constructor(private httpService: HttpService) {
 

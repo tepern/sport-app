@@ -1,3 +1,11 @@
+<div class="form">
+    <form id="search">
+        <div class="form-group">
+            <label>Search</label>
+            <input type="text" class="form-control" placeholder="search" name="search" [(ngModel)]="search" />
+        </div>
+    </form>    
+</div>
 <p>Teams</p>
 <ul class="team-list">
     <li *ngFor="let team of teams">
