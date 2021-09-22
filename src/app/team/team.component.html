@@ -1,8 +1,8 @@
 <div class="form">
-    <form id="search">
+    <form id="search-form">
         <div class="form-group">
             <label>Search</label>
-            <input type="text" class="form-control" placeholder="search" name="search" [(ngModel)]="search" />
+            <input type="text" class="form-control" placeholder="search" name="search" [(ngModel)]="textSearch" #search="ngModel" (ngModelChange)="onSearchChange()"/>
         </div>
     </form>    
 </div>
