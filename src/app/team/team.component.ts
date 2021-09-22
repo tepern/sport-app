@@ -26,12 +26,11 @@ export class TeamComponent implements OnInit {
         if(this.textSearch) {
             const teams = this.teams;
             const search = this.textSearch;
-            console.log(this.textSearch);
             this.teams = teams.filter(function(team) {
                 return team.name.indexOf(search)>-1;
             })
         } else {
-            this.httpService.getTeam().subscribe((data: Team[]) => {console.log(data); this.teams=data;});
+            this.httpService.getTeam().subscribe((data: Team[]) => {this.teams=data;});
         }
     }
 
